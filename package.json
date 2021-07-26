@@ -1,0 +1,21 @@
+{
+  "name": "celer-gateway-sdk",
+  "version": "1.0.0",
+  "description": "Celer lib to comunicate with gateway services",
+  "main": "index.js",
+  "build": "npm run clean && js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Jhonatan F. Ciriaco",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "jest": "^27.0.6"
+  },
+  "devDependencies": {
+    "eslint": "^7.31.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4"
+  }
+}
