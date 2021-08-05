@@ -7,20 +7,20 @@ const getKey = async () => {
     return data;
 }
 
-const logon = async (username, password) => {
+const logon = async (user, password) => {
     try {
-        if (!username || !password)
+        if (!user || !password)
             throw new Error('username or password is empty');
 
-        const data = await getKey();
-        const res = await api.post('/v1/logon', {
-            username,
-            password: crypto.publicEncrypt(data.publicKey, password)
+        const { publicKey } = await getKey();
+        const res = await api.post('/v2/logon', {
+            user: user,
+            password: crypto.publicEncrypt(publicKey, Buffer.from(password)).toString("base64"),
         });
 
         return res;
     } catch (e) {
-        console.log(e);
+        console.log(e.response.data || e.message);
     }
 }
 
