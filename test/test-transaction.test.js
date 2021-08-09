@@ -1,13 +1,13 @@
 const { transaction } = require('../src/modules/transaction');
 
 test("transaction", async () => {
-    await expect(transaction.transaction(data)).resolves.toBeDefined();
+    await expect(transaction(data)).resolves.toBe(true)
 });
 
 
 const data = {
-    "pan": "5195052549253420",
-    "cardholderName": "silva Goncalves",
+    "pan": "123",
+    "cardholderName": "12312",
     "expirationDate": "06/23",
     "cvvStatus": "E",
     "cvv": "805",

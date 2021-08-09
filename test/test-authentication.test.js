@@ -11,5 +11,7 @@ test("getKey", async () => {
 });
 
 test("logOn", async () => {
-    await expect(authentication.logon("200333", "3DE3B99D-08BB-41AB-A2A5-E1EE66222E2A")).resolves.toBeDefined();
+    await expect(authentication.logon(
+        "200333",
+        "3DE3B99D-08BB-41AB-A2A5-E1EE66222E2A")).resolves.toBeDefined();
 });
