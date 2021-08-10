@@ -1,6 +1,6 @@
 const yup = require('yup');
 
-const invocieScheme = yup.object().shape({
+const invoiceScheme = yup.object().shape({
   expirationDate: yup.string().typeError('expirationDate must be a string').required(),
   amount: yup.number().typeError('amount must be a number').required(),
   splitMode: yup.boolean().typeError('splitMode must be a boolean').required(),
@@ -30,5 +30,5 @@ const invocieScheme = yup.object().shape({
 });
 
 module.exports = {
-  invocieScheme,
+  invoiceScheme,
 };
