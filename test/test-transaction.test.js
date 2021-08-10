@@ -1,12 +1,26 @@
-const { transaction } = require('../src/modules/transaction');
+const { mixed } = require('yup');
+const { transaction, getStatus } = require('../src/modules/transaction');
 
 test("transaction", async () => {
-    await expect(transaction(data)).resolves.toBe(true)
+    await expect(transaction(data, token)).resolves.toEqual(expect.objectContaining({
+        status: expect.any(Boolean),
+        message: expect.any(String),
+        receipt: expect.any(String),
+        tid: expect.any(String),
+        details: expect.any(String),
+        date: expect.any(String),
+        cod: expect.any(String),
+    }));
 });
 
+test("getTransactionStatus", async () => {
+    await expect(getStatus(tId, token)).resolves.toBeDefined();
+})
 
+const tId = "16285616805054929"
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNX0lEIjoiNjg1MTE4IiwiaWF0IjoxNjI4NTYzMzk3LCJleHAiOjE2Mjg1NjUxOTd9.DAQrrDhLrF1aSaJBqzIcFdPa6q0YcnRaXOgZHpHF4VA"
 const data = {
-    "pan": "123",
+    "pan": "5195052549253420",
     "cardholderName": "12312",
     "expirationDate": "06/23",
     "cvvStatus": "E",

@@ -1,30 +1,38 @@
-const crypto = require('crypto');
+var NodeRSA = require("node-rsa");
 const api = require('../config/api');
 
+var key = new NodeRSA();
+
+key.setOptions({
+    encryptionScheme: "pkcs1"
+});
+
 const getKey = async () => {
-  const { data } = await api.get('/v1/getKey');
-  return data;
+    const { data } = await api.get('/v1/getKey');
+    return data;
 };
 
 const logon = async (user, password) => {
-  try {
-    if (!user || !password) throw new Error('username or password is empty');
+    try {
+        if (!user || !password) throw new Error('username or password is empty');
 
-    const { publicKey } = await getKey();
-    const res = await api.post('/v1/logon', {
-      user,
-      password: crypto.publicEncrypt(publicKey, Buffer.from(password)).toString('base64'),
-    });
+        const { publicKey } = await getKey();
+        key.importKey(publicKey, "pkcs8-public");
+        const encryptedPassword = key.encrypt(password, "base64");
 
-    console.log(res);
-    return res;
-  } catch (e) {
-    console.log(e.response);
-    return e.response.data || e.message;
-  }
+        const { data } = await api.post('/v1/logon', {
+            user,
+            password: encryptedPassword,
+        });
+
+        console.log(data);
+        return data;
+    } catch (e) {
+        return e.response.data || e;
+    }
 };
 
 module.exports = {
-  getKey,
-  logon,
+    getKey,
+    logon,
 };

@@ -3,34 +3,38 @@ const api = require('../config/api');
 const { shape } = require('../helpers/schemes/transaction.scheme');
 
 const transaction = async (payload, token) => {
-  try {
-    const validation = await shape.validate(payload);
+    try {
+        const validation = await shape.validate(payload);
 
-    const transactionAction = await api.post('/v2/transaction', {
-      body: validation,
-      Headers: { 'x-access-token': token },
-    });
-
-    return transactionAction;
-  } catch (e) {
-    return e;
-  }
+        const { data } = await api.post('/v2/transaction', payload, {
+            headers: { 'x-access-token': token },
+        });
+        return {
+            ...data,
+            details: data.details || ""
+        };
+    } catch (e) {
+        return e.response.data || e;
+    }
 };
 
-const getStatus = async (id, token) => {
-  try {
-    const { data } = await api.post('/v1/verify', {
-      body: { tid: id },
-      Headers: { 'x-access-token': token },
-    });
+const getStatus = async (tId, token) => {
+    try {
+        const { data } = await api.post('/v1/verify', { tid: tId }, {
+            headers: {
+                'x-access-token': token
+            }
+        });
 
-    return data;
-  } catch (e) {
-    return e;
-  }
+        console.log(data);
+        return data
+    } catch (e) {
+        console.log(e.response.data || e);
+        return e.response.data || e;
+    }
 };
 
 module.exports = {
-  transaction,
-  getStatus,
+    transaction,
+    getStatus,
 };
