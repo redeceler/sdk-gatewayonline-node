@@ -18,7 +18,7 @@ const invoiceScheme = yup.object().shape({
       city: yup.string().typeError('city must be a string').required(),
       state: yup.string().typeError('state must be a string').required(),
       country: yup.string().typeError('country must be a string').required(),
-      zipcode: yup.string().typeError('zipcode must be a string').required(),
+      zipCode: yup.string().typeError('zipcode must be a string').required(),
     }).required(),
   }),
   splits: yup.array().of(yup.object(

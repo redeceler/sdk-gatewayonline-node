@@ -1,60 +1,61 @@
-// const { transactionScheme } = require('../helpers/schemes/transaction.scheme');
 const api = require('../config/api');
 const { pixShape } = require('../helpers/schemes/pix.scheme');
 
 const loadQRCode = async (payload, token) => {
   try {
-    const validation = await pixShape.validate(payload);
+    await pixShape.validate(payload);
 
-    const { data } = await api.post('/v2/pix/loadQRCode', {
-      body: validation,
-      Headers: { 'x-access-token': token },
+    const { data } = await api.post('/v2/pix/loadQRCode', payload, {
+      headers: { 'x-access-token': token },
     });
 
+    console.log(data);
     return data;
   } catch (e) {
-    return e;
+    console.log(e.response?.data || e);
+    return e.response?.data || e.message || e;
   }
 };
 
-const statusTransaction = async (id, token) => {
+const statusTransaction = async (txId, token) => {
   try {
-    const { data } = await api.post('/v2/statusTransaction', {
-      body: { tid: id },
-      Headers: { 'x-access-token': token },
+    const { data } = await api.post('/v2/pix/statusTransaction', { txId }, {
+      headers: { 'x-access-token': token },
     });
 
+    console.log(data);
     return data;
   } catch (e) {
-    return e;
+    console.log(e.response?.data || e);
+    return e.response?.data || e.message || e;
   }
 };
 
-const cancelQRCode = async (id, token) => {
+const cancelQRCode = async (txId, token) => {
   try {
-    const { data } = await api.post('/v2/cancelQRCode', {
-      body: { txId: id },
-      Headers: { 'x-access-token': token },
+    const { data } = await api.post('/v2/pix/cancelQRCode', { txId }, {
+      headers: { 'x-access-token': token },
     });
 
+    console.log(data);
     return data;
   } catch (e) {
-    return e;
+    console.log(e.response?.data || e);
+    return e.response?.data || e.message || e;
   }
 };
-const cancelPix = async (id, amount, token) => {
+
+const cancelPix = async (payload, token) => {
   try {
-    const { data } = await api.post('/v2/cancelPix', {
-      body: {
-        txId: id,
-        amount,
-      },
-      Headers: { 'x-access-token': token },
+    const { data } = await api.post('/v2/pix/cancelPix', payload, {
+      headers: { 'x-access-token': token },
     });
 
+    console.log(data);
     return data;
   } catch (e) {
-    return e;
+    console.log(e?.response?.data || e);
+    return e.response?.data || e.message || e;
   }
 };
 

@@ -13,8 +13,8 @@ const invoice = async (payload, token) => {
     console.log(data);
     return data;
   } catch (e) {
-    console.log(e);
-    return e.ValidationError || e.response.data || e;
+    console.log(e.response?.data || e);
+    return e.response?.data || e.message || e;
   }
 };
 
