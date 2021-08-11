@@ -13,7 +13,7 @@ test("cancelQRCode", async () => {
 })
 
 test("cancelPix", async () => {
-  await expect(cancelPix(cancelObj.txId, cancelObj.amount, token)).resolves.toBeDefined();
+  await expect(cancelPix(cancelObj, token)).resolves.toBeDefined();
 })
 
 const txId = "16159343096f73169921d441a";
