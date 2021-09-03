@@ -20,3 +20,10 @@ test("logon", async () => {
         token: expect.any(String)
     }));
 });
+
+test("token", async () => {
+    expect(
+        authentication.getToken()
+    ).toBeDefined();
+});
+

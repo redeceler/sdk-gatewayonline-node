@@ -25,7 +25,6 @@ const logon = async (user, password) => {
       password: encryptedPassword,
     });
 
-    console.log(data);
     return data;
   } catch (e) {
     return e.response.data || e;
@@ -34,5 +33,5 @@ const logon = async (user, password) => {
 
 module.exports = {
   getKey,
-  logon,
+  logon
 };

@@ -1,23 +1,35 @@
 const { loadQRCode, statusTransaction, cancelQRCode, cancelPix } = require('../src/modules/pix');
 
 test("loadQrCode", async () => {
-  await expect(loadQRCode(data, token)).resolves.toBeDefined();
-}, 10000)
+  await expect(loadQRCode(data, token)).resolves.toEqual(expect.objectContaining({
+    status: expect.any(Boolean),
+    message: expect.any(String),
+    txId: expect.any(String),
+  }));
+}, 120000)
 
 test("statusPix", async () => {
   await expect(statusTransaction(txId, token)).resolves.toBeDefined();
 })
 
 test("cancelQRCode", async () => {
-  await expect(cancelQRCode(txId, token)).resolves.toBeDefined();
+  await expect(cancelQRCode(txId, token)).resolves.toEqual(expect.objectContaining({
+    status: expect.any(Boolean),
+    message: expect.any(String),
+    situation: expect.any(String),
+  }));
 })
 
 test("cancelPix", async () => {
-  await expect(cancelPix(cancelObj, token)).resolves.toBeDefined();
+  await expect(cancelPix(cancelObj, token)).resolves.toEqual(expect.objectContaining({
+    status: expect.any(Boolean),
+    message: expect.any(String),
+    situation: expect.any(String),
+  }));
 })
 
 const txId = "16159343096f73169921d441a";
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNX0lEIjoiNjkxNTIyIiwiaWF0IjoxNjI4NjQ3MTE5LCJleHAiOjE2Mjg2NDg5MTl9.m4GmtTbcIqg2wvkYBWEy2zDIe6Qpi1za_eeWoVjTy3M"
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNX0lEIjoiNjkxNTIyIiwiaWF0IjoxNjMwNjM0NDQzLCJleHAiOjE2MzA2MzYyNDN9.BNvzbewjNjeJxXLrrOfXmb4fzBLmmgYjF5JzajhSC2w"
 
 const cancelObj = {
   "txId": "16159343096f73169921d441a",

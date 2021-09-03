@@ -1,10 +1,23 @@
-const { invoice } = require('../src/modules/invoice');
+const { invoice, checkTax } = require('../src/modules/invoice');
 
 test("invoice", async () => {
-  await expect(invoice(data, token)).resolves.toBeDefined();
+  await expect(invoice(data, token)).resolves.toEqual(expect.objectContaining({
+    status: expect.any(Boolean),
+    message: expect.any(String),
+    tid: expect.any(String),
+    cod: expect.any(String),
+  }));
 })
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNX0lEIjoiNjkxNTIyIiwiaWF0IjoxNjI4NjQ1MTUwLCJleHAiOjE2Mjg2NDY5NTB9.I1T0vp0hVDc9AsazKjDTUhM00vzIPh83V0FtzFPHFq4"
+test("checkTax", async () => {
+  await expect(checkTax(token)).resolves.toEqual(expect.objectContaining({
+    status: expect.any(Boolean),
+    tax: expect.any(Number)
+  }));
+})
+
+
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNX0lEIjoiNjkxNTIyIiwiaWF0IjoxNjMwNjM1NjQ2LCJleHAiOjE2MzA2Mzc0NDZ9.Rv-ADF-iIdRtb32iAN096R6d3HZZGJItzX04dolJAy8"
 const data = {
   "amount": 10,
   "expirationDate": "15/06/20",

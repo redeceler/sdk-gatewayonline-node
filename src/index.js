@@ -1,10 +1,13 @@
 const authentication = require("./modules/authentication");
-const sell = require("./modules/sell");
+const transaction = require("./modules/transaction");
 const capture = require("./modules/capture");
-
+const invoice = require("./modules/invoice");
+const pix = require("./modules/pix");
 
 module.exports = {
-    authentication: authentication,
-    sell: sell,
-    capture: capture
+    authentication,
+    transaction,
+    capture,
+    invoice,
+    pix
 }

@@ -11,17 +11,23 @@ test("transaction", async () => {
         date: expect.any(String),
         cod: expect.any(String),
     }));
-});
+}, 30000);
 
 test("getTransactionStatus", async () => {
-    await expect(getStatus(tId, token)).resolves.toBeDefined();
+    await expect(getStatus(tId, token)).resolves.toEqual(expect.objectContaining({
+        status: expect.any(Boolean),
+        amount: expect.any(Number),
+        situation: expect.any(String),
+        date: expect.any(String),
+    }));
 })
 
 const tId = "16285616805054929"
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNX0lEIjoiNjg1MTE4IiwiaWF0IjoxNjI4NTYzMzk3LCJleHAiOjE2Mjg1NjUxOTd9.DAQrrDhLrF1aSaJBqzIcFdPa6q0YcnRaXOgZHpHF4VA"
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNX0lEIjoiNjkxNTIyIiwiaWF0IjoxNjMwNjMxMjUyLCJleHAiOjE2MzA2MzMwNTJ9.KDEGsPGUR5yu8aWF6d1AMc20LNDHCjIM64tsz1qK-vM"
+
 const data = {
     "pan": "5195052549253420",
-    "cardholderName": "12312",
+    "cardholderName": "silva Goncalves",
     "expirationDate": "06/23",
     "cvvStatus": "E",
     "cvv": "805",

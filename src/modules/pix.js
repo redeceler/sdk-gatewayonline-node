@@ -9,10 +9,8 @@ const loadQRCode = async (payload, token) => {
       headers: { 'x-access-token': token },
     });
 
-    console.log(data);
     return data;
   } catch (e) {
-    console.log(e.response?.data || e);
     return e.response?.data || e.message || e;
   }
 };
@@ -23,10 +21,8 @@ const statusTransaction = async (txId, token) => {
       headers: { 'x-access-token': token },
     });
 
-    console.log(data);
     return data;
   } catch (e) {
-    console.log(e.response?.data || e);
     return e.response?.data || e.message || e;
   }
 };
@@ -37,10 +33,8 @@ const cancelQRCode = async (txId, token) => {
       headers: { 'x-access-token': token },
     });
 
-    console.log(data);
     return data;
   } catch (e) {
-    console.log(e.response?.data || e);
     return e.response?.data || e.message || e;
   }
 };
@@ -51,10 +45,8 @@ const cancelPix = async (payload, token) => {
       headers: { 'x-access-token': token },
     });
 
-    console.log(data);
     return data;
   } catch (e) {
-    console.log(e?.response?.data || e);
     return e.response?.data || e.message || e;
   }
 };
