@@ -1,8 +1,8 @@
 const api = require('../config/api');
 
-const capture = async (token, payload) => {
+const capture = async (token, tid) => {
   try {
-    const { data } = await api.put(`/v2/capture/${payload.tid}`, payload, {
+    const { data } = await api.put(`/v2/capture/${tid}`, {}, {
       headers: { 'x-access-token': token },
     });
 

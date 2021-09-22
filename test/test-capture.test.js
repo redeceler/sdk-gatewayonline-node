@@ -3,7 +3,7 @@ const capture = require("../src/modules/capture");
 
 test("capture", async () => {
     await expect(
-        capture.capture(token, data)
+        capture.capture(token)
     ).resolves.toEqual(expect.objectContaining({
         status: expect.any(Boolean),
         message: expect.any(String),
@@ -12,10 +12,10 @@ test("capture", async () => {
 });
 
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNX0lEIjoiNjkxNTIyIiwiaWF0IjoxNjMwNjMyNTY4LCJleHAiOjE2MzA2MzQzNjh9.Wt8cSRbPSbLQs0KLWS66-XvVGDqwQhxu53UgW8ONrlo"
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNX0lEIjoiNjkxNTIyIiwiaWF0IjoxNjMwNjk5NzE4LCJleHAiOjE2MzA3MDE1MTh9.n2gtjQfm-hcgL0rQbi9bkkh84YgLKpgMiFziH-A98O8"
 
 const data = {
     "status": true,
     "message": "Transação capturada",
-    "tid": "15845592480307733"
+    "tid": "16306998129908299"
 }

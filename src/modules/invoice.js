@@ -1,6 +1,7 @@
 // const { transactionScheme } = require('../helpers/schemes/transaction.scheme');
 const api = require('../config/api');
 const { invoiceScheme } = require('../helpers/schemes/invoice.schemce');
+const { test } = require('../index');
 
 const invoice = async (payload, token) => {
   try {
@@ -29,7 +30,12 @@ const checkTax = async (token) => {
   }
 };
 
+const teste = () => {
+  console.log(test);
+};
+
 module.exports = {
   invoice,
   checkTax,
+  teste,
 };

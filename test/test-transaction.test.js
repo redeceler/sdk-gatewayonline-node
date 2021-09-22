@@ -16,14 +16,14 @@ test("transaction", async () => {
 test("getTransactionStatus", async () => {
     await expect(getStatus(tId, token)).resolves.toEqual(expect.objectContaining({
         status: expect.any(Boolean),
-        amount: expect.any(Number),
+        amount: expect.any(String),
         situation: expect.any(String),
         date: expect.any(String),
     }));
-})
+});
 
-const tId = "16285616805054929"
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNX0lEIjoiNjkxNTIyIiwiaWF0IjoxNjMwNjMxMjUyLCJleHAiOjE2MzA2MzMwNTJ9.KDEGsPGUR5yu8aWF6d1AMc20LNDHCjIM64tsz1qK-vM"
+const tId = "16306999425318735"
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNX0lEIjoiNjkxNTIyIiwiaWF0IjoxNjMwNjk5NzE4LCJleHAiOjE2MzA3MDE1MTh9.n2gtjQfm-hcgL0rQbi9bkkh84YgLKpgMiFziH-A98O8"
 
 const data = {
     "pan": "5195052549253420",

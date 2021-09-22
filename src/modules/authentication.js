@@ -1,5 +1,6 @@
 const NodeRSA = require('node-rsa');
 const api = require('../config/api');
+let { test } = require('../index');
 
 const key = new NodeRSA();
 
@@ -25,13 +26,21 @@ const logon = async (user, password) => {
       password: encryptedPassword,
     });
 
+    console.log(data);
+
     return data;
   } catch (e) {
     return e.response.data || e;
   }
 };
 
+const teste = () => {
+  test = 'tesdasdasdasd 12313';
+  console.log(test);
+};
+
 module.exports = {
   getKey,
-  logon
+  logon,
+  teste,
 };
