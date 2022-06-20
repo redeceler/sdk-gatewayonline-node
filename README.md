@@ -2,7 +2,7 @@
 
 Os métodos a seguir são disponibilizados para acesso via SDK que pode ser instalado utilizando o comando abaixo.
 
-`$ yarn add https://github.com/redeceler/celer-gateway-sdk`
+`$ yarn add https://github.com/redeceler/sdk-gatewayonline-node`
 
 ## Autenticação
 
